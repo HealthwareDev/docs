@@ -1,37 +1,23 @@
 ---
-title: 'Code Blocks'
-description: 'Display inline code and code blocks'
-icon: 'code'
+title: "Sleep"
+description: "Wearables track your total time asleep and breaking it down into Light, REM, and Deep (slow-wave) stages."
+icon: "code"
 ---
 
-## Basic
+## What is tracked in sleep
 
-### Inline Code
-
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-
-```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
-```
-
-### Code Block
-
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
-
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-````
+| **Data**                | **Unit**              | **Description**                                                                                            |
+| :---------------------- | :-------------------- | :--------------------------------------------------------------------------------------------------------- |
+| **time_in_bed**         | minutes               | Total minutes in bed (sleep \+ awake)                                                                      |
+| **light_sleep**         | minutes               | Minutes spent in light / N2 sleep                                                                          |
+| **deep_sleep**          | minutes               | Minutes spent in deep / slow-wave sleep                                                                    |
+| **rem_sleep**           | minutes               | Minutes spent in REM sleep                                                                                 |
+| **awake**               | minutes               | Minutes awake while still in bed                                                                           |
+| **sleep_debt**          | minutes (±)           | Provider-reported sleep debt; positive = deficit, negative = surplus                                       |
+| **sleep_latency**       | minutes               | Minutes taken to fall asleep after “lights out”                                                            |
+| **sleep_interruptions** | count                 | Number of significant awakenings/disturbances                                                              |
+| **sleep_start**         | ISO-8601 UTC datetime | Timestamp when sleep began (first epoch scored “sleep”)                                                    |
+| **sleep_end**           | ISO-8601 UTC datetime | Timestamp when sleep ended (last epoch scored “sleep”)                                                     |
+| **out_of_bed_time**     | ISO-8601 UTC datetime | When the user finally got out of bed (may exceed _sleepEnd_)                                               |
+| **sleep_efficiency**    | percentage (0-100)    | Efficiency = totalSleep ÷ timeInBed                                                                        |
+| **sleep_score**         | score (0-100 scale)   | Composite sleep-quality score on the provider’s scale (e.g., Oura “Sleep Score”, WHOOP “Sleep Performance” |
