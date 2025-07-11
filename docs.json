@@ -17,11 +17,12 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart"
+              "quickstart",
+              "development"
             ]
           },
           {
-            "group": "Biomarkers",
+            "group": "Essentials",
             "pages": [
               "essentials/sleep",
               "essentials/readiness",
