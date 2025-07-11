@@ -1,7 +1,7 @@
 ---
 title: "Sleep"
 description: "Wearables track your total time asleep and breaking it down into Light, REM, and Deep (slow-wave) stages."
-icon: "code"
+icon: "moon"
 ---
 
 ## What is tracked in sleep
@@ -21,3 +21,7 @@ icon: "code"
 | **out_of_bed_time**     | ISO-8601 UTC datetime | When the user finally got out of bed (may exceed _sleepEnd_)                                               |
 | **sleep_efficiency**    | percentage (0-100)    | Efficiency = totalSleep ÷ timeInBed                                                                        |
 | **sleep_score**         | score (0-100 scale)   | Composite sleep-quality score on the provider’s scale (e.g., Oura “Sleep Score”, WHOOP “Sleep Performance” |
+
+<Warning>
+  Some providers may not return all fields. Implement appropriate null checks and fallback logic where necessary
+</Warning>
