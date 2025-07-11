@@ -11,23 +11,22 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Learn",
         "groups": [
           {
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Biomarkers",
             "pages": [
-              "essentials/sleep",
-              "essentials/readiness",
-              "essentials/activity",
-              "essentials/body"
+              "biomarkers/sleep",
+              "biomarkers/readiness",
+              "biomarkers/activity",
+              "biomarkers/body"
             ]
           }
         ]
