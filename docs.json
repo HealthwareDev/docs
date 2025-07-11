@@ -41,10 +41,10 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "OAuth",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
+              "api-reference/oauth/authorize",
+              "api-reference/oauth/integrations",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
             ]
