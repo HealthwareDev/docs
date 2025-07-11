@@ -1,94 +1,102 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "Healthware API Collection",
+    "version": "1.0.0",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
+      "url": "2307-84-9-239-160.ngrok-free.app"
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
+    "/api/integrations/token": {
+      "parameters": [],
+      "post": {
+        "summary": "Integrations Session",
         "parameters": [
           {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 07 Jul 2025 00:03:52 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:4143:9142:46b0:e677"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "200",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "integrations_url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    }
                   }
                 }
               }
             }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
           }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
+        },
         "requestBody": {
-          "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                "type": "object",
+                "properties": {
+                  "developer_user_id": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -96,121 +104,387 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/api/chat": {
+      "parameters": [],
+      "post": {
+        "summary": "Natural Language Query (NLQ)",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
+            "name": "x-api-key",
+            "in": "header",
             "required": true,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 0
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": true,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 0
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 11 Jul 2025 23:13:38 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:5f1:f771:1052:9c4f"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "200",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "recovery_score": {
+                          "type": "string",
+                          "format": "utc-millisec"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_connection_id": {
+                    "type": "string"
+                  },
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "model_provider": {
+                    "type": "string"
+                  },
+                  "model_name": {
+                    "type": "string"
+                  },
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "properties": {
+                          "recovery_score": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
+    },
+    "/api/biomarker/readiness": {
+      "parameters": [],
+      "get": {
+        "summary": "Biomarkers",
+        "parameters": [
+          {
+            "name": "user_connection_id",
+            "in": "query",
+            "required": false,
+            "description": "Id for a users wearable connection",
+            "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
+            "example": "2025-07-09T00:00:00Z",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
+            "example": "2025-07-12T00:00:00Z",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 11 Jul 2025 15:15:32 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:5f1:f771:1052:9c4f"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": {
+                      "type": "string"
+                    },
+                    "provider": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "hrv": {
+                            "type": "number"
+                          },
+                          "resting_heart_rate": {
+                            "type": "integer"
+                          },
+                          "skin_temperature": {
+                            "type": "number"
+                          },
+                          "readiness_score": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
           }
         }
       }
     },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+    "/api/rules": {
+      "parameters": [],
+      "post": {
+        "summary": "Rules",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 11 Jul 2025 23:31:30 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:5f1:f771:1052:9c4f"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_connection_id": {
+                    "type": "string"
+                  },
+                  "rule": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "when": {
+                        "type": "string"
+                      },
+                      "then": {
+                        "type": "object",
+                        "properties": {
+                          "webhook": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "llm": {
+                    "type": "object",
+                    "properties": {
+                      "provider": {
+                        "type": "string"
+                      },
+                      "model": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

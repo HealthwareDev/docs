@@ -45,8 +45,28 @@
             "pages": [
               "api-reference/oauth/authorize",
               "api-reference/oauth/integrations",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/oauth/integrations/token"
+            ]
+          },
+          {
+            "group": "Biomarkers",
+            "pages": [
+              "api-reference/biomarkers/sleep",
+              "api-reference/biomarkers/readiness",
+              "api-reference/biomarkers/activity",
+              "api-reference/biomarkers/body"
+            ]
+          },
+          {
+            "group": "Natural Language Query (NLQ)",
+            "pages": [
+              "api-reference/biomarkers/chat"
+            ]
+          },
+          {
+            "group": "Rules (Testing Only)",
+            "pages": [
+              "api-reference/rules"
             ]
           }
         ]
