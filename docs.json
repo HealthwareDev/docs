@@ -46,6 +46,13 @@
               "api-reference/oauth/authorize",
               "api-reference/oauth/integrations"
             ]
+          },
+          {
+            "group": "Biomarkers",
+            "pages": [
+              "api-reference/biomarkers/sleep",
+              "api-reference/biomarkers/readiness"
+            ]
           }
         ]
       }
