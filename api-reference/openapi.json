@@ -606,10 +606,17 @@
             }
           }
         },
-        "requestBody": {
+         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "developer_user_id": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         }
