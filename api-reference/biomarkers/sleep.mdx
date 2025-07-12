@@ -8,20 +8,20 @@ description: "Get Sleep data"
 
 <ParamField path="user_connection_id" type="string" required>
   User ID from your database
+</ParamField>
 
-  <ParamField path="start" type="string" required>
-    Timestamp marking the earliest possible point when the biomarker event could have taken place.
+<ParamField path="start" type="string" required>
+  Timestamp marking the earliest possible point when the biomarker event could have taken place.
+</ParamField>
 
-    <ParamField path="end" type="string" required>
-      Timestamp marking the latest possible point when the biomarker event could have taken place.
-    </ParamField>
-  </ParamField>
+<ParamField path="end" type="string" required>
+  Timestamp marking the latest possible point when the biomarker event could have taken place.
 </ParamField>
 
 <RequestExample>
 
 ```bash HTTP
-GET /api/biomarker/readiness?user_connection_id=USER_CONN_ID&start=2025-07-09T00:00:00Z&end=2025-07-12T00:00:00Z HTTP/1.1
+GET /api/biomarker/sleep?user_connection_id=USER_CONN_ID&start=2025-07-09T00:00:00Z&end=2025-07-12T00:00:00Z HTTP/1.1
 Host: api.healthware.dev
 x-api-key: YOUR_API_KEY
 dev-id:  YOUR_DEV_ID
@@ -35,9 +35,16 @@ const qs = new URLSearchParams({
   end:   "2025-07-12T00:00:00Z"
 });
 
-const biomarker = await fetch(`https://api.healthware.dev/api/biomarker/readiness?${qs}`, {
+const biomarker = await fetch(`https://api.healthware.dev/api/biomarker/sleep?${qs}`, {
   headers: { "x-api-key": API_KEY, "dev-id": DEV_ID }
 }).then(r => r.json());
+```
+
+
+```bash BASH
+curl "https://{NGROK_HOST}/api/biomarker/sleep?user_connection_id=$CONN_ID&start=2025-07-09T00:00:00Z&end=2025-07-12T00:00:00Z" \
+  -H "x-api-key: $API_KEY" \
+  -H "dev-id:  $DEV_ID"
 ```
 
 </RequestExample>
