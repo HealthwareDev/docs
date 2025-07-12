@@ -106,7 +106,7 @@
     },
     "/api/chat": {
       "post": {
-        "summary": "Natural Language Query (NLQ)",
+        "summary": "Natural Query Language (NLQ)",
         "parameters": [
           {
             "name": "x-api-key",
@@ -156,7 +156,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful NLQ response",
+            "description": "Successful NQL response",
             "content": {
               "application/json": {
                 "schema": {
