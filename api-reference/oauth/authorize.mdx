@@ -4,16 +4,10 @@ openapi: "POST /api/authorize"
 description: "Manual OAuth flow—ideal when you want to design and manage the entire authorisation experience yourself."
 ---
 
-### Body Parameters
-
-<ParamField path="developer_user_id" type="string" required>
-  User ID from your database
-</ParamField>
-
 <RequestExample>
 
 ```bash HTTP
-POST /api/oauth/authorize/{provider} HTTP/1.1
+POST /api/oauth/authorize/whoop HTTP/1.1
 Host: api.healthware.dev
 Content-Type: application/json
 x-api-key: YOUR_API_KEY
@@ -26,7 +20,7 @@ dev-id:  YOUR_DEV_ID
 
 
 ```bash BASH
-curl -X POST "https://api.healthware.dev/api/oauth/authorize/{provider}" \
+curl -X POST "https://api.healthware.dev/api/oauth/authorize/whoop" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $API_KEY" \
   -H "dev-id:  $DEV_ID" \
@@ -35,7 +29,7 @@ curl -X POST "https://api.healthware.dev/api/oauth/authorize/{provider}" \
 
 
 ```javascript JavaScript
-const res = await fetch(`https://api.healthware.dev/api/oauth/authorize/{provider}`, {
+const res = await fetch(`https://api.healthware.dev/api/oauth/authorize/whoop`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
