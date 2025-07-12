@@ -59,12 +59,6 @@
             "pages": [
               "api-reference/nql/chat"
             ]
-          },
-          {
-            "group": "Rules",
-            "pages": [
-              "api-reference/rules/rules"
-            ]
           }
         ]
       }
