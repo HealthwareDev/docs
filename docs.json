@@ -65,6 +65,13 @@
             "pages": [
               "api-reference/users/delete"
             ]
+          },
+          {
+            "group": "Push Notification",
+            "pages": [
+              "api-reference/notifications/register",
+              "api-reference/notifications/notify"
+            ]
           }
         ]
       }
