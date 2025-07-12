@@ -43,8 +43,8 @@
           {
             "group": "OAuth",
             "pages": [
-              "api-reference/oauth/authorize",
-              "api-reference/oauth/integrations"
+              "api-reference/oauth/authorize/whoop",
+              "api-reference/oauth/integrations/token"
             ]
           },
           {
