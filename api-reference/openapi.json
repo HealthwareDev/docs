@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Healthware API Collection",
+    "title": "Healthware.dev API Collection",
     "version": "1.0.0",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)"
   },
   "servers": [
     {
-      "url": "2307-84-9-239-160.ngrok-free.app"
+      "url": "api.healthware.dev"
     }
   ],
   "paths": {
@@ -104,141 +104,174 @@
         }
       }
     },
+   "paths": {
     "/api/chat": {
-      "parameters": [],
       "post": {
         "summary": "Natural Language Query (NLQ)",
+        "operationId": "postChat",
+        "tags": ["Chat"],
+
         "parameters": [
           {
             "name": "x-api-key",
             "in": "header",
             "required": true,
-            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 0
-            }
+            "schema": { "type": "string" },
+            "description": "Your API key"
           },
           {
             "name": "dev-id",
             "in": "header",
             "required": true,
-            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
-            "schema": {
-              "type": "string",
-              "minLength": 0,
-              "maxLength": 0
-            }
+            "schema": { "type": "string" },
+            "description": "Your developer account ID"
           }
         ],
-        "responses": {
-          "200": {
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "application/json"
-              },
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Fri, 11 Jul 2025 23:13:38 GMT"
-              },
-              "Ngrok-Agent-Ips": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2a01:4b00:bc02:2a00:5f1:f771:1052:9c4f"
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
-              },
-              "Transfer-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "chunked"
-              }
-            },
-            "description": "200",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "user_connection_id": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "recovery_score": {
-                          "type": "string",
-                          "format": "utc-millisec"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
+
+        /* ────────────────────────
+           1. Request body
+           ──────────────────────── */
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "user_connection_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID returned by the integrations flow"
                   },
                   "prompt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The natural-language question to ask"
                   },
-                  "model_provider": {
-                    "type": "string"
-                  },
-                  "model_name": {
-                    "type": "string"
-                  },
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string"
-                      },
-                      "properties": {
-                        "type": "object",
-                        "properties": {
-                          "recovery_score": {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
+                  "model_provider": { "type": "string" },
+                  "model_name":     { "type": "string" },
+
+                  /* <── callers can drop _any_ SchemaDescriptor here ──> */
+                  "schema": { "$ref": "#/components/schemas/SchemaDescriptor" }
+                },
+                "required": [
+                  "user_connection_id",
+                  "prompt",
+                  "model_provider",
+                  "model_name",
+                  "schema"
+                ],
+                "description": "Payload sent to POST /api/chat"
+              }
+            }
+          }
+        },
+
+        /* ────────────────────────
+           2. Success response
+           ──────────────────────── */
+        "responses": {
+          "200": {
+            "description": "Successful NLQ response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": { "type": "string" },
+
+                    /* <── `data` can be ANY shape ──> */
+                    "data": {
+                      "type": "object",
+                      "description":
+                        "Arbitrary structure matching the caller-supplied descriptor",
+                      "additionalProperties": true
                     }
-                  }
+                  },
+                  "required": ["user_connection_id", "data"]
                 }
               }
             }
           }
         }
       }
-    },
+    }
+  },
+
+  /* ───────────────────────────────
+     3. Re-usable SchemaDescriptor
+     ─────────────────────────────── */
+  "components": {
+    "schemas": {
+      "SchemaDescriptor": {
+        "oneOf": [
+          { "$ref": "#/components/schemas/SD_String" },
+          { "$ref": "#/components/schemas/SD_Number" },
+          { "$ref": "#/components/schemas/SD_Boolean" },
+          { "$ref": "#/components/schemas/SD_Array" },
+          { "$ref": "#/components/schemas/SD_Object" }
+        ],
+        "description":
+          "Discriminated-union descriptor used both as NLQ 'schema' and elsewhere"
+      },
+
+      /* ── primitives ────────────────────── */
+      "SD_String": {
+        "type": "object",
+        "properties": {
+          "type": { "const": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      "SD_Number": {
+        "type": "object",
+        "properties": {
+          "type": { "const": "number" },
+          "description": { "type": "string" }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      "SD_Boolean": {
+        "type": "object",
+        "properties": {
+          "type": { "const": "boolean" },
+          "description": { "type": "string" }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+
+      /* ── recursive containers ──────────── */
+      "SD_Array": {
+        "type": "object",
+        "properties": {
+          "type": { "const": "array" },
+          "items": { "$ref": "#/components/schemas/SchemaDescriptor" },
+          "description": { "type": "string" }
+        },
+        "required": ["type", "items"],
+        "additionalProperties": false
+      },
+      "SD_Object": {
+        "type": "object",
+        "properties": {
+          "type": { "const": "object" },
+          "properties": {
+            "type": "object",
+            "description":
+              "Map of property names → SchemaDescriptor values",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SchemaDescriptor"
+            }
+          },
+          "description": { "type": "string" }
+        },
+        "required": ["type", "properties"],
+        "additionalProperties": false
+      }
+    }
+  }
     "/api/biomarker/sleep": {
       "parameters": [],
       "get": {
@@ -596,7 +629,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "authorizationURL": {
+                    "authorization_url": {
                       "type": "string",
                       "format": "uri"
                     }
