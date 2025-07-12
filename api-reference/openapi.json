@@ -221,7 +221,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -230,7 +230,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -381,7 +381,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -390,7 +390,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
