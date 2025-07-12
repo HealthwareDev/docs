@@ -104,13 +104,9 @@
         }
       }
     },
-   "paths": {
     "/api/chat": {
       "post": {
         "summary": "Natural Language Query (NLQ)",
-        "operationId": "postChat",
-        "tags": ["Chat"],
-
         "parameters": [
           {
             "name": "x-api-key",
@@ -127,10 +123,6 @@
             "description": "Your developer account ID"
           }
         ],
-
-        /* ────────────────────────
-           1. Request body
-           ──────────────────────── */
         "requestBody": {
           "required": true,
           "content": {
@@ -148,8 +140,6 @@
                   },
                   "model_provider": { "type": "string" },
                   "model_name":     { "type": "string" },
-
-                  /* <── callers can drop _any_ SchemaDescriptor here ──> */
                   "schema": { "$ref": "#/components/schemas/SchemaDescriptor" }
                 },
                 "required": [
@@ -164,10 +154,6 @@
             }
           }
         },
-
-        /* ────────────────────────
-           2. Success response
-           ──────────────────────── */
         "responses": {
           "200": {
             "description": "Successful NLQ response",
@@ -177,8 +163,6 @@
                   "type": "object",
                   "properties": {
                     "user_connection_id": { "type": "string" },
-
-                    /* <── `data` can be ANY shape ──> */
                     "data": {
                       "type": "object",
                       "description":
@@ -194,84 +178,6 @@
         }
       }
     }
-  },
-
-  /* ───────────────────────────────
-     3. Re-usable SchemaDescriptor
-     ─────────────────────────────── */
-  "components": {
-    "schemas": {
-      "SchemaDescriptor": {
-        "oneOf": [
-          { "$ref": "#/components/schemas/SD_String" },
-          { "$ref": "#/components/schemas/SD_Number" },
-          { "$ref": "#/components/schemas/SD_Boolean" },
-          { "$ref": "#/components/schemas/SD_Array" },
-          { "$ref": "#/components/schemas/SD_Object" }
-        ],
-        "description":
-          "Discriminated-union descriptor used both as NLQ 'schema' and elsewhere"
-      },
-
-      /* ── primitives ────────────────────── */
-      "SD_String": {
-        "type": "object",
-        "properties": {
-          "type": { "const": "string" },
-          "description": { "type": "string" }
-        },
-        "required": ["type"],
-        "additionalProperties": false
-      },
-      "SD_Number": {
-        "type": "object",
-        "properties": {
-          "type": { "const": "number" },
-          "description": { "type": "string" }
-        },
-        "required": ["type"],
-        "additionalProperties": false
-      },
-      "SD_Boolean": {
-        "type": "object",
-        "properties": {
-          "type": { "const": "boolean" },
-          "description": { "type": "string" }
-        },
-        "required": ["type"],
-        "additionalProperties": false
-      },
-
-      /* ── recursive containers ──────────── */
-      "SD_Array": {
-        "type": "object",
-        "properties": {
-          "type": { "const": "array" },
-          "items": { "$ref": "#/components/schemas/SchemaDescriptor" },
-          "description": { "type": "string" }
-        },
-        "required": ["type", "items"],
-        "additionalProperties": false
-      },
-      "SD_Object": {
-        "type": "object",
-        "properties": {
-          "type": { "const": "object" },
-          "properties": {
-            "type": "object",
-            "description":
-              "Map of property names → SchemaDescriptor values",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/SchemaDescriptor"
-            }
-          },
-          "description": { "type": "string" }
-        },
-        "required": ["type", "properties"],
-        "additionalProperties": false
-      }
-    }
-  }
     "/api/biomarker/sleep": {
       "parameters": [],
       "get": {
