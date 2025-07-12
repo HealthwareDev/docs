@@ -1,0 +1,98 @@
+---
+title: "Get Sleep"
+openapi: "GET /api/biomarker/sleep"
+description: "Get Sleep data"
+---
+
+### Path Parameters
+
+<ParamField path="user_connection_id" type="string" required>
+  User ID from your database
+
+  <ParamField path="start" type="string" required>
+    Timestamp marking the earliest possible point when the biomarker event could have taken place.
+
+    <ParamField path="end" type="string" required>
+      Timestamp marking the latest possible point when the biomarker event could have taken place.
+    </ParamField>
+  </ParamField>
+</ParamField>
+
+<RequestExample>
+
+```bash HTTP
+GET /api/biomarker/readiness?user_connection_id=USER_CONN_ID&start=2025-07-09T00:00:00Z&end=2025-07-12T00:00:00Z HTTP/1.1
+Host: api.healthware.dev
+x-api-key: YOUR_API_KEY
+dev-id:  YOUR_DEV_ID
+```
+
+
+```javascript JavaScript
+const qs = new URLSearchParams({
+  user_connection_id: CONN_ID,
+  start: "2025-07-09T00:00:00Z",
+  end:   "2025-07-12T00:00:00Z"
+});
+
+const biomarker = await fetch(`https://api.healthware.dev/api/biomarker/readiness?${qs}`, {
+  headers: { "x-api-key": API_KEY, "dev-id": DEV_ID }
+}).then(r => r.json());
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+    "user_connection_id": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
+    "provider": "whoop",
+    "data": [
+        {
+            "time_in_bed": 19808930,
+            "light_sleep": 6306820,
+            "deep_sleep": 7656096,
+            "rem_sleep": 5015492,
+            "awake": 830522,
+            "sleep_debt": 6287726,
+            "sleep_efficiency": 96.041084,
+            "sleep_score": 69,
+            "sleep_start": "2025-07-11T02:40:52.625Z",
+            "sleep_end": "2025-07-11T08:16:30.186Z",
+            "out_of_bed_time": "2025-07-11T08:16:30.186Z",
+            "sleep_interruptions": 9
+        },
+        {
+            "time_in_bed": 29826034,
+            "light_sleep": 10213009,
+            "deep_sleep": 6306328,
+            "rem_sleep": 6036796,
+            "awake": 7269901,
+            "sleep_debt": 7240042,
+            "sleep_efficiency": 75.62565,
+            "sleep_score": 65,
+            "sleep_start": "2025-07-10T02:22:40.966Z",
+            "sleep_end": "2025-07-10T10:39:47.000Z",
+            "out_of_bed_time": "2025-07-10T10:39:47.000Z",
+            "sleep_interruptions": 7
+        },
+        {
+            "time_in_bed": 20080696,
+            "light_sleep": 6626690,
+            "deep_sleep": 5046620,
+            "rem_sleep": 7866570,
+            "awake": 540816,
+            "sleep_debt": 6198201,
+            "sleep_efficiency": 97.306786,
+            "sleep_score": 70,
+            "sleep_start": "2025-07-09T02:33:26.304Z",
+            "sleep_end": "2025-07-09T08:08:07.000Z",
+            "out_of_bed_time": "2025-07-09T08:08:07.000Z",
+            "sleep_interruptions": 9
+        }
+    ]
+}
+```
+
+</ResponseExample>
