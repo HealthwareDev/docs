@@ -53,6 +53,18 @@
               "api-reference/biomarkers/sleep",
               "api-reference/biomarkers/readiness"
             ]
+          },
+          {
+            "group": "Natural Query Language (NQL)",
+            "pages": [
+              "api-reference/nql/chat"
+            ]
+          },
+          {
+            "group": "Rules",
+            "pages": [
+              "api-reference/rules/rules"
+            ]
           }
         ]
       }
