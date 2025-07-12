@@ -247,31 +247,36 @@
           {
             "name": "user_connection_id",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Id for a wearable connection",
             "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
             "schema": {
-              "deprecated": false
+              "deprecated": false,
+              "type": "string"
             }
           },
           {
             "name": "start",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
             "example": "2025-07-09T00:00:00Z",
             "schema": {
-              "deprecated": false
+              "deprecated": false,
+              "type": "string",
+              "format": "date-time"
             }
           },
           {
             "name": "end",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
             "example": "2025-07-12T00:00:00Z",
             "schema": {
-              "deprecated": false
+              "deprecated": false,
+              "type": "string",
+              "format": "date-time"
             }
           },
           {
@@ -402,31 +407,36 @@
           {
             "name": "user_connection_id",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Id for a wearable connection",
             "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
             "schema": {
-              "type": "integer"
+              "deprecated": false,
+              "type": "string"
             }
           },
           {
             "name": "start",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
             "example": "2025-07-09T00:00:00Z",
             "schema": {
-              "type": "integer"
+              "deprecated": false,
+              "type": "string",
+              "format": "date-time"
             }
           },
           {
             "name": "end",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
             "example": "2025-07-12T00:00:00Z",
             "schema": {
-              "type": "integer"
+              "deprecated": false,
+              "type": "string",
+              "format": "date-time"
             }
           },
           {
