@@ -59,6 +59,12 @@
             "pages": [
               "api-reference/nql/chat"
             ]
+          },
+          {
+            "group": "Users",
+            "pages": [
+              "api-reference/users/delete"
+            ]
           }
         ]
       }
