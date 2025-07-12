@@ -28,6 +28,13 @@ dev-id:  YOUR_DEV_ID
 ```
 
 
+```bash BASH
+curl "https://api.healthware.dev/api/biomarker/sleep?user_connection_id=$CONN_ID&start=2025-07-09T00:00:00Z&end=2025-07-12T00:00:00Z" \
+  -H "x-api-key: $API_KEY" \
+  -H "dev-id:  $DEV_ID"
+```
+
+
 ```javascript JavaScript
 const qs = new URLSearchParams({
   user_connection_id: CONN_ID,
@@ -38,13 +45,6 @@ const qs = new URLSearchParams({
 const biomarker = await fetch(`https://api.healthware.dev/api/biomarker/sleep?${qs}`, {
   headers: { "x-api-key": API_KEY, "dev-id": DEV_ID }
 }).then(r => r.json());
-```
-
-
-```bash BASH
-curl "https://{NGROK_HOST}/api/biomarker/sleep?user_connection_id=$CONN_ID&start=2025-07-09T00:00:00Z&end=2025-07-12T00:00:00Z" \
-  -H "x-api-key: $API_KEY" \
-  -H "dev-id:  $DEV_ID"
 ```
 
 </RequestExample>
