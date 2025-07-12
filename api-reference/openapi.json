@@ -14,7 +14,7 @@
     "/api/integrations/token": {
       "parameters": [],
       "post": {
-        "summary": "Integrations Session",
+        "summary": "Authenticate a user (Managed Flow)",
         "parameters": [
           {
             "name": "dev-id",
@@ -239,16 +239,171 @@
         }
       }
     },
-    "/api/biomarker/readiness": {
+    "/api/biomarker/sleep": {
       "parameters": [],
       "get": {
-        "summary": "Biomarkers",
+        "summary": "Sleep Biomarker",
         "parameters": [
           {
             "name": "user_connection_id",
             "in": "query",
             "required": false,
-            "description": "Id for a users wearable connection",
+            "description": "Id for a wearable connection",
+            "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
+            "example": "2025-07-09T00:00:00Z",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
+            "example": "2025-07-12T00:00:00Z",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Sat, 12 Jul 2025 16:52:33 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:3946:3ed:f9e7:438e"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": {
+                      "type": "string"
+                    },
+                    "provider": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "time_in_bed": {
+                            "type": "integer"
+                          },
+                          "light_sleep": {
+                            "type": "integer"
+                          },
+                          "deep_sleep": {
+                            "type": "integer"
+                          },
+                          "rem_sleep": {
+                            "type": "integer"
+                          },
+                          "awake": {
+                            "type": "integer"
+                          },
+                          "sleep_debt": {
+                            "type": "integer"
+                          },
+                          "sleep_efficiency": {
+                            "type": "number"
+                          },
+                          "sleep_score": {
+                            "type": "integer"
+                          },
+                          "sleep_start": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "sleep_end": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "out_of_bed_time": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "sleep_interruptions": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/biomarker/readiness": {
+      "parameters": [],
+      "get": {
+        "summary": "Readiness Biomarker",
+        "parameters": [
+          {
+            "name": "user_connection_id",
+            "in": "query",
+            "required": false,
+            "description": "Id for a wearable connection",
             "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
             "schema": {
               "type": "integer"
@@ -306,13 +461,13 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "Fri, 11 Jul 2025 15:15:32 GMT"
+                "example": "Sat, 12 Jul 2025 16:52:04 GMT"
               },
               "Ngrok-Agent-Ips": {
                 "schema": {
                   "type": "integer"
                 },
-                "example": "2a01:4b00:bc02:2a00:5f1:f771:1052:9c4f"
+                "example": "2a01:4b00:bc02:2a00:3946:3ed:f9e7:438e"
               },
               "Vary": {
                 "schema": {
@@ -362,6 +517,89 @@
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    },
+    "/api/oauth/authorize/whoop": {
+      "parameters": [],
+      "post": {
+        "summary": "Authenticate a user (Manual Flow)",
+        "parameters": [
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Sun, 06 Jul 2025 17:56:23 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:11a1:2042:144d:9961"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authorizationURL": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
             }
           }
         }
