@@ -1,4 +1,58 @@
 ---
-title: 'Oauth Integrations'
-openapi: 'POST /integrations/token'
+title: "Authenticate a user (Managed Flow)"
+openapi: "POST /integrations/token"
+description: "Managed OAuth flow—ideal when you want to don’t want to build your own flow."
 ---
+
+<ParamField path="developer_user_id" header="{}" type="string" required>
+  User ID from your database
+</ParamField>
+
+<RequestExample>
+
+```bash HTTP
+POST /api/integrations/token HTTP/1.1
+Host: api.healthware.dev
+Content-Type: application/json
+x-api-key: YOUR_API_KEY
+dev-id:  YOUR_DEV_ID
+
+{
+  "developer_user_id": "YOUR_USER_ID"
+}
+```
+
+
+```bash BASH
+curl -X POST "https://api.healthware.dev/api/integrations/token" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $API_KEY" \
+  -H "dev-id:  $DEV_ID" \
+  -d '{"developer_user_id":"YOUR_USER_ID"}'
+```
+
+
+```javascript JavaScript
+const res = await fetch(`https://api.healthware.dev/api/integrations/token`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": process.env.API_KEY,
+    "dev-id":   process.env.DEV_ID
+  },
+  body: JSON.stringify({ developer_user_id: "YOUR_USER_ID" })
+});
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+{
+    "integrations_url": "https://api.healthware.dev/integrations?token=eyJhbGciOiJIUzI1NiJ9.eyJhcGlLZXkiOiJrZXlfakI3QmlxNlZYa2FCN1NROThZUGhrTVMxM2U5YjEzeVUiLCJkZXZJZCI6ImQyZTE4MDIzLWJhMTYtNGQ4MC1iZWVlLTdjM2IyZjAwYjUxNyIsImRldmVsb3Blcl91c2VyX2lkIjoidHJrcl8xMjM0NSIsImlzcyI6ImhlYWx0aHdhcmUuZGV2IiwiZXhwIjoxNzUxODQ2OTMyfQ.km58JlY9fS4I0kIDpGoKnhqZEEfJJgO_0tymBMukgww",
+    "expires_in": 300
+}
+```
+
+</ResponseExample>
