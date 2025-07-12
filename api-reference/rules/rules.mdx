@@ -1,13 +1,13 @@
 ---
 title: "Natural Language Query (NLQ)"
 openapi: "POST /api/rules"
-description: "Query biomarker data using plain language (e.g. “how did my sleep improve this week?”)."
+description: "A declarative engine where you define “if this, then that” logic in YAML to respond to physiological trends."
 ---
 
 <RequestExample>
 
 ```bash HTTP
-POST /api/chat HTTP/1.1
+POST /api/rules HTTP/1.1
 Host: api.healthware.dev
 Content-Type: application/json
 x-api-key: YOUR_API_KEY
@@ -15,45 +15,44 @@ dev-id:  YOUR_DEV_ID
 
 {
   "user_connection_id": "USER_CONN_ID",
-  "prompt": "what is my recovery score for today",
-  "model_provider": "openai",
-  "model_name": "gpt-4o",
-  "schema": {
-    "type": "object",
-    "properties": {
-      "recovery_score": { "type": "string" }
-    }
-  }
+  "rule": {
+    "id":   "sleep-and-recovery-over-65",
+    "when": "sleep_score and readiness is greater than 65",
+    "then": { "webhook": "https://example.com/webhook" }
+  },
+  "llm": { "provider": "openai", "model": "gpt-4o" }
 }
 ```
 
 
 ```bash BASH
-curl -X POST "https://api.healthware.dev/api/chat" \
+curl -X POST "https://api.healthware.dev/api/rules" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $API_KEY" \
   -H "dev-id:  $DEV_ID" \
-  -d @nlq.json   # save the JSON above as nlq.json
+  -d @rule.json   # save the JSON above as rule.json
 ```
 
 
 ```javascript JavaScript
-const body = {
-  user_connection_id: "USER_CONN_ID",
-  prompt: "what is my recovery score for today",
-  model_provider: "openai",
-  model_name: "gpt-4o",
-  schema: { type: "object", properties: { recovery_score: { type: "string" } } }
+const ruleBody = {
+  user_connection_id: CONN_ID,
+  rule: {
+    id:   "sleep-and-recovery-over-65",
+    when: "sleep_score and readiness is greater than 65",
+    then: { webhook: "https://example.com/webhook" }
+  },
+  llm: { provider: "openai", model: "gpt-4o" }
 };
 
-const data = await fetch(`https://api.healthware.dev/api/chat`, {
+const res = await fetch(`https://api.healthware.dev/api/rules`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
     "x-api-key": API_KEY,
     "dev-id":   DEV_ID
   },
-  body: JSON.stringify(body)
+  body: JSON.stringify(ruleBody)
 }).then(r => r.json());
 ```
 
@@ -63,10 +62,7 @@ const data = await fetch(`https://api.healthware.dev/api/chat`, {
 
 ```json Response
 {
-    "user_connection_id": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
-    "data": {
-        "recovery_score": "74"
-    }
+    "status": 200
 }
 ```
 
