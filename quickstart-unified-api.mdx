@@ -1,0 +1,80 @@
+---
+title: "Quickstart (Unified API)"
+description: "Getting started with Healthware.dev couldn’t be easier, just create a free account. The moment you sign up, you’ll receive your unique Developer ID and API key, so you can start building right away."
+---
+
+<Steps>
+  <Step title="Configure providers">
+    Once you’re registered, navigate to the **Providers** page to choose the wearables you’d like to support. Most integrations are one-click and fully managed by [Healthware.dev](http://Healthware.dev), but a few brands, such as WHOOP, require a quick setup step on the provider’s dashboard. If extra configuration is needed, you’ll see clear instructions to guide you through it.
+  </Step>
+  <Step title="Configure destinations">
+    Head over to the **Destinations** page to tell [Healthware.dev](http://Healthware.dev) where to deliver your data. By default, every event—real-time metrics, auth callbacks, and more is posted to the HTTPS webhook you specify (POST only). Need data in other places? Just add additional destinations such as message queues, cloud storage, or analytics pipelines to fit your workflow.
+  </Step>
+  <Step title="Connect a wearable">
+    With providers selected and destinations ready, you can now link a user’s wearable. Choose the flow that fits your app:
+
+    **1. Manual OAuth flow**
+
+    - Send a POST
+
+      <ParamField path="/authorize/{provider}" type="string">
+        **Manual OAuth flow**—ideal when you want to design and manage the entire authorisation experience yourself.
+      </ParamField>
+    - We return an `auth_url`.
+    - Open that URL in the user’s browser to finish authorisation.
+
+    **2. Fully-managed OAuth flow**
+
+    - Send a POST
+
+      <ParamField path="/integrations/token" type="string">
+        **Managed OAuth flow**—ideal when you want to don't want to build your own flow.
+      </ParamField>
+    - Redirect the user to `/api/integrations/token`. Our hosted page walks them through the rest.
+
+    Both flows complete the OAuth handshake and start streaming data to every destination you’ve configured.
+  </Step>
+  <Step title="Configure LLM Provider">
+    Rule evaluation is powered by Large Language Models (LLMs) that you configure under **Settings**. There, select your preferred foundation model (e.g., GPT-4o, Claude) and enter the model’s API credentials. [Healthware.dev](http://Healthware.dev) will then use that model to execute all of your rules.
+  </Step>
+  <Step title="Write your first rules">
+    With your providers selected, destinations enabled, and users connected, you’re ready to create **rules** logic blocks that fire whenever their conditions evaluate to true.
+
+    ```yaml rules.yaml
+    llm:
+      model: gpt-4.1
+      provider: openai
+    rules:
+      - id: sleep-score-over-65
+        when: sleep_score is greater than 65
+        then:
+          webhook: https://webhook.site/13c1120b-5dca-4349-9174-5ceaf44ae215
+    ```
+
+    Whenever a wearable sends fresh health data (Sleep, Recovery, HRV, etc.), Healthware.dev:
+
+    1. **Evaluates your rules.** Any rule that matches is triggered.
+    2. **Performs an action** that you configured in the rules
+
+    > **Always-on stream:** Real-time health data is still posted to your default webhook even if no rules match or exist, so you never miss an event.
+  </Step>
+</Steps>
+
+## Next steps
+
+At this point, you understand how to sign up for a developer account, how to configure destinations, connect a wearable and write rules. Ready for more? Explore the full documentation to deepen your understanding of [Healthware.dev](http://Healthware.dev).
+
+<CardGroup cols={2}>
+  <Card title="Learn about Biomarkers" icon="books" iconType="solid" href="/essentials/markdown">
+    Add content to your docs with MDX syntax.
+  </Card>
+  <Card title="How to write rules" icon="code" iconType="solid" href="/essentials/code">
+    Add code directly to your docs with syntax highlighting.
+  </Card>
+  <Card title="Query data using Natural Language" icon="language" href="/essentials/images">
+    Add images to your docs to make them more engaging.
+  </Card>
+  <Card title="Query data using REST API" icon="puzzle-piece" href="/essentials/reusable-snippets">
+    Add templates to your docs to make them more reusable.
+  </Card>
+</CardGroup>

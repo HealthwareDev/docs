@@ -17,7 +17,8 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart-triggers"
+              "quickstart-triggers",
+              "quickstart-unified-api"
             ]
           },
           {
