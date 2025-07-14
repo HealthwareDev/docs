@@ -34,29 +34,8 @@ description: "Getting started with Healthware.dev couldn’t be easier, just cre
 
     Both flows complete the OAuth handshake and start streaming data to every destination you’ve configured.
   </Step>
-  <Step title="Configure LLM Provider">
-    Rule evaluation is powered by Large Language Models (LLMs) that you configure under **Settings**. There, select your preferred foundation model (e.g., GPT-4o, Claude) and enter the model’s API credentials. [Healthware.dev](http://Healthware.dev) will then use that model to execute all of your rules.
-  </Step>
-  <Step title="Write your first rules">
-    With your providers selected, destinations enabled, and users connected, you’re ready to create **rules** logic blocks that fire whenever their conditions evaluate to true.
-
-    ```yaml rules.yaml
-    llm:
-      model: gpt-4.1
-      provider: openai
-    rules:
-      - id: sleep-score-over-65
-        when: sleep_score is greater than 65
-        then:
-          webhook: https://webhook.site/13c1120b-5dca-4349-9174-5ceaf44ae215
-    ```
-
-    Whenever a wearable sends fresh health data (Sleep, Recovery, HRV, etc.), Healthware.dev:
-
-    1. **Evaluates your rules.** Any rule that matches is triggered.
-    2. **Performs an action** that you configured in the rules
-
-    > **Always-on stream:** Real-time health data is still posted to your default webhook even if no rules match or exist, so you never miss an event.
+  <Step title="API requests">
+    Use the API Reference to query historical biomarker data for any date range
   </Step>
 </Steps>
 
