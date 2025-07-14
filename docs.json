@@ -25,7 +25,8 @@
             "group": "Biomarkers",
             "pages": [
               "biomarkers/sleep",
-              "biomarkers/readiness"
+              "biomarkers/readiness",
+              "biomarkers/daily"
             ]
           }
         ]
