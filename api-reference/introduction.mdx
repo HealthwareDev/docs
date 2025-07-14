@@ -31,8 +31,7 @@ In general, `2xx` HTTP codes correspond to success, `4xx` codes are for user-rel
 | ------ | ----------------------------------------------- |
 | `200`  | Successful request.                             |
 | `400`  | Check that the parameters were correct.         |
-| `401`  | The API key used was missing.                   |
-| `403`  | The API key used was invalid.                   |
+| `401`  | The API key used was missing or invalid.                   |
 | `404`  | The resource was not found.                     |
 | `429`  | The rate limit was exceeded.                    |
 | `5xx`  | Indicates an error with Healthware.dev servers. |
@@ -44,7 +43,7 @@ In general, `2xx` HTTP codes correspond to success, `4xx` codes are for user-rel
 
 ## Rate limit
 
-The default maximum rate limit is **2 requests per second**. This number can be increased for trusted senders by request. After that, you'll hit the rate limit and receive a `429` response error code.
+The default maximum rate limit is **100 requests per second**. After that, you'll hit the rate limit and receive a `429` response error code.
 
 Learn more about our [rate limits](/api-reference/rate-limit).
 
