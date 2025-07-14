@@ -15,5 +15,5 @@ icon: "heart-pulse"
 | **readiness_score**    | score (varies) | Provider-specific recovery/readiness score (scale determined by each wearable platform) |
 
 <Warning>
-  Some providers may not return all fields. Implement appropriate null checks and fallback logic where necessary
+  Providers may omit any field not supported by the device or unavailable for a given day. Always implement `null`/`undefined` checks and sensible fallbacks when processing daily-summary data.
 </Warning>

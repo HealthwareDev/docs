@@ -1,5 +1,33 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Daily Summary"
+description: "Wearable’s daily-summary report aggregates steps, distance, active energy, heart-rate statistics, HRV, respiratory rate, composite readiness/sleep scores, and more — everything you need to understand overall activity and recovery on a calendar-day basis."
+icon: "calendar-days"
 ---
 
+## What is tracked in the daily summary
+
+| **Data**                    | **Units**         | **Description**                                           |
+| :-------------------------- | :---------------- | :-------------------------------------------------------- |
+| **steps**                   | count             | Total number of steps taken during the local calendar day |
+| **distance**                | m                 | Distance walked or run (metres)                           |
+| **kilojoules**              | kJ                | Active energy expenditure (kilojoules)                    |
+| **resting_heart_rate**      | bpm               | Average resting heart-rate for the day                    |
+| **heart_rate.min**          | bpm               | Lowest heart-rate sample recorded                         |
+| **heart_rate.max**          | bpm               | Highest heart-rate sample recorded                        |
+| **heart_rate.avg**          | bpm               | Mean heart-rate across the day                            |
+| **active_durations.high**   | min               | Minutes spent in high-intensity activity                  |
+| **active_durations.medium** | min               | Minutes spent in moderate-intensity activity              |
+| **active_durations.low**    | min               | Minutes spent in low-intensity activity                   |
+| **hrv**                     | ms                | Root-mean-square of successive differences (HRV)          |
+| **hrv_samples**             | ms (array)        | Dense series of individual HRV measurements               |
+| **respiratory_rate**        | breaths/min       | Average breaths per minute                                |
+| **scores.sleep**            | score (varies)    | Provider-specific composite sleep score                   |
+| **scores.readiness**        | score (varies)    | Provider-specific readiness / recovery score              |
+| **strain**                  | 0–21 scale        | WHOOP strain score (higher = greater cardiovascular load) |
+| **start**                   | ISO-8601 datetime | Local start timestamp of the aggregation window           |
+| **end**                     | ISO-8601 datetime | Local end timestamp of the aggregation window             |
+| **heart_rate_samples**      | bpm series        | Time-series heart-rate samples (timestamp \+ bpm)         |
+
+<Warning>
+  Providers may omit any field not supported by the device or unavailable for a given day. Always implement `null`/`undefined` checks and sensible fallbacks when processing daily-summary data.
+</Warning>

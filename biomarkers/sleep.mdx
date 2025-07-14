@@ -23,5 +23,5 @@ icon: "moon"
 | **sleep_score**         | score (0-100 scale)   | Composite sleep-quality score on the provider’s scale (e.g., Oura “Sleep Score”, WHOOP “Sleep Performance” |
 
 <Warning>
-  Some providers may not return all fields. Implement appropriate null checks and fallback logic where necessary
+  Providers may omit any field not supported by the device or unavailable for a given day. Always implement `null`/`undefined` checks and sensible fallbacks when processing daily-summary data.
 </Warning>
