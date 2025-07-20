@@ -22,7 +22,8 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid",
               "deprecated": false
             }
           },
@@ -32,7 +33,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
-              "type": "string"
+              "type": "string",
               "deprecated": false
             }
           }
@@ -91,12 +92,22 @@
           }
         },
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "developer_user_id": {
+              "type": "string",
+              "example": "trkr_12345"
             }
-          }
+          },
+          "required": ["developer_user_id"]
         }
+      }
+    }
+  }
       }
     },
     "/api/chat": {
