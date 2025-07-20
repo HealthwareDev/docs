@@ -4,20 +4,6 @@ openapi: "GET /api/biomarker/sleep"
 description: "Get Sleep data"
 ---
 
-### Path Parameters
-
-<ParamField path="user_connection_id" type="string" required>
-  User ID from your database
-</ParamField>
-
-<ParamField path="start" type="string" required>
-  Timestamp marking the earliest possible point when the sleep event could have taken place.
-</ParamField>
-
-<ParamField path="end" type="string" required>
-  Timestamp marking the latest possible point when the sleep event could have taken place.
-</ParamField>
-
 <RequestExample>
 
 ```bash HTTP
