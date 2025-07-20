@@ -7,16 +7,7 @@
   },
   "servers": [
     {
-      "url": "25cd6228ff16.ngrok-free.app"
-    },
-    {
-      "url": "localhost"
-    },
-    {
-      "url": "{{baseURL}}"
-    },
-    {
-      "url": "2307-84-9-239-160.ngrok-free.app"
+      "url": "healthware.dev"
     }
   ],
   "paths": {
