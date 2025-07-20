@@ -795,12 +795,22 @@
           }
         },
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {}
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "developer_user_id": {
+              "type": "string",
+              "example": "trkr_12345"
             }
-          }
+          },
+          "required": ["developer_user_id"]
         }
+      }
+    }
+  }
       }
     },
     "/api/users/{user-id}": {
