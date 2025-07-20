@@ -777,6 +777,90 @@
           }
         }
       }
+    },
+    "/api/users/{user-id}": {
+      "parameters": [],
+      "delete": {
+        "summary": "Delete User",
+        "parameters": [
+           {
+            "name": "user-id",
+            "in": "path",
+            "required": true,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": true,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Sun, 20 Jul 2025 16:25:47 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "87.74.139.189"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "Delete User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
