@@ -19,7 +19,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -28,7 +28,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -105,7 +105,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -114,7 +114,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -286,7 +286,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -295,7 +295,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -455,7 +455,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -464,7 +464,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -553,7 +553,7 @@
           {
             "name": "user_connection_id",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Id for a wearable connection",
             "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
             "schema": {
@@ -563,7 +563,7 @@
           {
             "name": "start",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
             "example": "2025-07-13T00:00:00Z",
             "schema": {
@@ -573,7 +573,7 @@
           {
             "name": "end",
             "in": "query",
-            "required": false,
+            "required": true,
             "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
             "example": "2025-07-14T00:00:00Z",
             "schema": {
@@ -583,7 +583,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -592,7 +592,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -686,15 +686,24 @@
         }
       }
     },
-    "/api/oauth/authorize/oura": {
+    "/api/oauth/authorize/{provider}": {
       "parameters": [],
       "post": {
         "summary": "Authenticate a user (Manual Flow)",
         "parameters": [
+           {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "example": "whoop",
+            "schema": {
+              "deprecated": false
+            }
+          },
           {
             "name": "dev-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -703,7 +712,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
