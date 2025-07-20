@@ -1,25 +1,34 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Healthware.dev API Collection",
+    "title": "Healthware API Collection",
     "version": "1.0.0",
-    "description": "Healthware.dev provides a unified API for accessing health and wellness data from connected wearable devices. This collection includes all available endpoints for authenticating users, retrieving biomarker data, executing natural-language queries, and managing push notification workflows.\n\nUse this collection to:\n\n• Test and explore Healthware’s managed and manual integration flows  \n• Query biometric data like sleep, readiness, and recovery  \n• Define automation rules and trigger webhooks or notifications  \n• Simulate real-world health use cases with developer tooling\n\nFor detailed documentation, visit [https://docs.healthware.dev](https://docs.healthware.dev)."
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)"
   },
   "servers": [
     {
-      "url": "api.healthware.dev"
+      "url": "25cd6228ff16.ngrok-free.app"
+    },
+    {
+      "url": "localhost"
+    },
+    {
+      "url": "{{baseURL}}"
+    },
+    {
+      "url": "2307-84-9-239-160.ngrok-free.app"
     }
   ],
   "paths": {
-    "/api/oauth/authorize/whoop": {
+    "/api/oauth/authorize/widget": {
       "parameters": [],
       "post": {
-        "summary": "Authenticate a user (Manual Flow)",
+        "summary": "Authenticate a user (Managed Flow)",
         "parameters": [
           {
             "name": "dev-id",
             "in": "header",
-            "required": true,
+            "required": false,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -28,7 +37,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": true,
+            "required": false,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -48,13 +57,13 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "Sun, 06 Jul 2025 17:56:23 GMT"
+                "example": "Sun, 20 Jul 2025 11:01:34 GMT"
               },
               "Ngrok-Agent-Ips": {
                 "schema": {
                   "type": "integer"
                 },
-                "example": "2a01:4b00:bc02:2a00:11a1:2042:144d:9961"
+                "example": "87.74.139.189"
               },
               "Vary": {
                 "schema": {
@@ -69,103 +78,13 @@
                 "example": "chunked"
               }
             },
-            "description": "200",
+            "description": "Authenticate a user (Managed Flow)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "authorization_url": {
-                      "type": "string",
-                      "format": "uri"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "developer_user_id": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    "/api/integrations/token": {
-      "parameters": [],
-      "post": {
-        "summary": "Authenticate a user (Managed Flow)",
-        "parameters": [
-          {
-            "name": "dev-id",
-            "in": "header",
-            "required": true,
-            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "example": "key_jB7Biq6VXkaQ98YPhbjhbhiS13e9b13yU",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "application/json"
-              },
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Mon, 07 Jul 2025 00:03:52 GMT"
-              },
-              "Ngrok-Agent-Ips": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2a01:4b00:bc02:2a00:4143:9142:46b0:e677"
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
-              },
-              "Transfer-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "chunked"
-              }
-            },
-            "description": "200",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "integrations_url": {
+                    "authorization_widget_url": {
                       "type": "string",
                       "format": "uri"
                     },
@@ -181,11 +100,141 @@
         "requestBody": {
           "content": {
             "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/chat": {
+      "parameters": [],
+      "post": {
+        "summary": "Natural Language Query (NLQ)",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "content-type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Fri, 18 Jul 2025 16:26:20 GMT"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "Natural Language Query (NLQ)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "recovery_score": {
+                          "type": "string",
+                          "format": "utc-millisec"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "developer_user_id": {
+                  "user_connection_id": {
                     "type": "string"
+                  },
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "model_provider": {
+                    "type": "string"
+                  },
+                  "model_name": {
+                    "type": "string"
+                  },
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "properties": {
+                          "recovery_score": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -194,80 +243,6 @@
         }
       }
     },
-    "/api/chat": {
-      "post": {
-        "summary": "Natural Query Language (NQL)",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": { "type": "string" },
-            "description": "Your API key"
-          },
-          {
-            "name": "dev-id",
-            "in": "header",
-            "required": true,
-            "schema": { "type": "string" },
-            "description": "Your developer account ID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "user_connection_id": {
-                    "type": "string",
-                    "description": "ID returned by the integrations flow"
-                  },
-                  "prompt": {
-                    "type": "string",
-                    "description": "The natural-language question to ask"
-                  },
-                  "model_provider": { "type": "string" },
-                  "model_name":     { "type": "string" },
-                  "schema": { "$ref": "#/components/schemas/SchemaDescriptor" }
-                },
-                "required": [
-                  "user_connection_id",
-                  "prompt",
-                  "model_provider",
-                  "model_name",
-                  "schema"
-                ],
-                "description": "Payload sent to POST /api/chat"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful NQL response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "user_connection_id": { "type": "string" },
-                    "data": {
-                      "type": "object",
-                      "description":
-                        "Arbitrary structure matching the caller-supplied descriptor",
-                      "additionalProperties": true
-                    }
-                  },
-                  "required": ["user_connection_id", "data"]
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     "/api/biomarker/sleep": {
       "parameters": [],
       "get": {
@@ -278,7 +253,7 @@
             "in": "query",
             "required": true,
             "description": "Id for a wearable connection",
-            "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
+            "example": "07a187d8-406e-44aa-aab6-29ddb3747e24",
             "schema": {
               "deprecated": false,
               "type": "string"
@@ -289,7 +264,7 @@
             "in": "query",
             "required": true,
             "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
-            "example": "2025-07-09T00:00:00Z",
+            "example": "2025-06-09T00:00:00Z",
             "schema": {
               "deprecated": false,
               "type": "string",
@@ -309,9 +284,18 @@
             }
           },
           {
+            "name": "next_token",
+            "in": "query",
+            "required": false,
+            "example": "eyIkIjoib0AxIiwibyI6MjB9",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
             "name": "x-api-key",
             "in": "header",
-            "required": true,
+            "required": false,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -320,7 +304,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": true,
+            "required": false,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -330,7 +314,13 @@
         "responses": {
           "200": {
             "headers": {
-              "Content-Type": {
+              "vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "content-type": {
                 "schema": {
                   "type": "string"
                 },
@@ -340,19 +330,19 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "Sat, 12 Jul 2025 16:52:33 GMT"
+                "example": "Sun, 20 Jul 2025 11:40:28 GMT"
               },
-              "Ngrok-Agent-Ips": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2a01:4b00:bc02:2a00:3946:3ed:f9e7:438e"
-              },
-              "Vary": {
+              "Connection": {
                 "schema": {
                   "type": "string"
                 },
-                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+                "example": "keep-alive"
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "timeout=5"
               },
               "Transfer-Encoding": {
                 "schema": {
@@ -361,7 +351,7 @@
                 "example": "chunked"
               }
             },
-            "description": "200",
+            "description": "Sleep Biomarker",
             "content": {
               "application/json": {
                 "schema": {
@@ -419,6 +409,9 @@
                           }
                         }
                       }
+                    },
+                    "next_token": {
+                      "type": "string"
                     }
                   }
                 }
@@ -438,7 +431,7 @@
             "in": "query",
             "required": true,
             "description": "Id for a wearable connection",
-            "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
+            "example": "8a1d3cbf-1c13-4a84-b5b1-4a3d132217a3",
             "schema": {
               "deprecated": false,
               "type": "string"
@@ -449,7 +442,7 @@
             "in": "query",
             "required": true,
             "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
-            "example": "2025-07-09T00:00:00Z",
+            "example": "2025-07-17T00:00:00Z",
             "schema": {
               "deprecated": false,
               "type": "string",
@@ -461,7 +454,7 @@
             "in": "query",
             "required": true,
             "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
-            "example": "2025-07-12T00:00:00Z",
+            "example": "2025-07-18T00:00:00Z",
             "schema": {
               "deprecated": false,
               "type": "string",
@@ -471,7 +464,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "required": true,
+            "required": false,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
               "deprecated": false
@@ -480,7 +473,7 @@
           {
             "name": "dev-id",
             "in": "header",
-            "required": true,
+            "required": false,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
               "deprecated": false
@@ -500,13 +493,13 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "Sat, 12 Jul 2025 16:52:04 GMT"
+                "example": "Fri, 18 Jul 2025 23:09:05 GMT"
               },
               "Ngrok-Agent-Ips": {
                 "schema": {
                   "type": "integer"
                 },
-                "example": "2a01:4b00:bc02:2a00:3946:3ed:f9e7:438e"
+                "example": "2a01:4b00:bc02:2a00:2038:204a:4639:ce22"
               },
               "Vary": {
                 "schema": {
@@ -521,7 +514,7 @@
                 "example": "chunked"
               }
             },
-            "description": "200",
+            "description": "Readiness Biomarker",
             "content": {
               "application/json": {
                 "schema": {
@@ -561,5 +554,229 @@
         }
       }
     },
+    "/api/biomarker/daily": {
+      "parameters": [],
+      "get": {
+        "summary": "Daily Biomarker",
+        "parameters": [
+          {
+            "name": "user_connection_id",
+            "in": "query",
+            "required": false,
+            "description": "Id for a wearable connection",
+            "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
+            "example": "2025-07-13T00:00:00Z",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
+            "example": "2025-07-14T00:00:00Z",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 14 Jul 2025 14:34:39 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "2a01:4b00:bc02:2a00:f085:2564:2735:f9b2"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "Daily Biomarker",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_connection_id": {
+                      "type": "string"
+                    },
+                    "provider": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kilojoules": {
+                            "type": "number"
+                          },
+                          "heart_rate": {
+                            "type": "object",
+                            "properties": {
+                              "avg_heart_rate": {
+                                "type": "integer"
+                              },
+                              "max_heart_rate": {
+                                "type": "integer"
+                              }
+                            }
+                          },
+                          "strain": {
+                            "type": "number"
+                          },
+                          "start": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "end": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/oauth/authorize/oura": {
+      "parameters": [],
+      "post": {
+        "summary": "Authenticate a user (Manual Flow)",
+        "parameters": [
+          {
+            "name": "dev-id",
+            "in": "header",
+            "required": false,
+            "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
+            "schema": {
+              "deprecated": false
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
+            "schema": {
+              "deprecated": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Sun, 20 Jul 2025 15:16:22 GMT"
+              },
+              "Ngrok-Agent-Ips": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "87.74.139.189"
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "chunked"
+              }
+            },
+            "description": "Authenticate a user (Manual Flow)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authorization_url": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    }
   }
 }
