@@ -51,7 +51,8 @@
             "group": "Biomarkers",
             "pages": [
               "api-reference/biomarkers/sleep",
-              "api-reference/biomarkers/readiness"
+              "api-reference/biomarkers/readiness",
+              "api-reference/biomarkers/daily"
             ]
           },
           {
