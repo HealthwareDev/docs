@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "healthware.dev"
+      "url": "https://healthware.dev"
     }
   ],
   "paths": {
@@ -22,7 +22,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
-              "type": "uuid"
+              "type": "string"
               "deprecated": false
             }
           },
