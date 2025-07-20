@@ -22,6 +22,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "uuid"
               "deprecated": false
             }
           },
@@ -31,6 +32,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string"
               "deprecated": false
             }
           }
@@ -108,6 +110,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string"
               "deprecated": false
             }
           },
@@ -117,6 +120,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "uuid"
               "deprecated": false
             }
           }
@@ -247,7 +251,7 @@
             "example": "07a187d8-406e-44aa-aab6-29ddb3747e24",
             "schema": {
               "deprecated": false,
-              "type": "string"
+              "type": "uuid"
             }
           },
           {
@@ -280,6 +284,7 @@
             "required": false,
             "example": "eyIkIjoib0AxIiwibyI6MjB9",
             "schema": {
+              "type": "string"
               "deprecated": false
             }
           },
@@ -289,6 +294,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string"
               "deprecated": false
             }
           },
@@ -298,6 +304,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "uuid"
               "deprecated": false
             }
           }
@@ -425,7 +432,7 @@
             "example": "8a1d3cbf-1c13-4a84-b5b1-4a3d132217a3",
             "schema": {
               "deprecated": false,
-              "type": "string"
+              "type": "uuid"
             }
           },
           {
@@ -458,6 +465,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string"
               "deprecated": false
             }
           },
@@ -467,6 +475,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "uuid"
               "deprecated": false
             }
           }
@@ -557,7 +566,7 @@
             "description": "Id for a wearable connection",
             "example": "739e5a24-4859-4ff9-b42b-ab27744c62c9",
             "schema": {
-              "type": "integer"
+              "type": "uuid"
             }
           },
           {
@@ -567,7 +576,7 @@
             "description": "Timestamp marking the earliest possible point when the biomarker event could have taken place.",
             "example": "2025-07-13T00:00:00Z",
             "schema": {
-              "type": "integer"
+              "type": "date-time"
             }
           },
           {
@@ -577,7 +586,7 @@
             "description": "Timestamp marking the latest possible point when the biomarker event could have taken place.",
             "example": "2025-07-14T00:00:00Z",
             "schema": {
-              "type": "integer"
+              "type": "date-time"
             }
           },
           {
@@ -586,6 +595,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string"
               "deprecated": false
             }
           },
@@ -595,6 +605,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "uuid"
               "deprecated": false
             }
           }
@@ -697,6 +708,7 @@
             "required": true,
             "example": "whoop",
             "schema": {
+              "type": "string",
               "deprecated": false
             }
           },
@@ -706,6 +718,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "uuid",
               "deprecated": false
             }
           },
@@ -715,6 +728,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string",
               "deprecated": false
             }
           }
@@ -789,6 +803,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "string",
               "deprecated": false
             }
           },
@@ -798,6 +813,7 @@
             "required": true,
             "example": "d2e18023-ba16-4d80-beee-7c3b2f00b517",
             "schema": {
+              "type": "string",
               "deprecated": false
             }
           },
@@ -807,6 +823,7 @@
             "required": true,
             "example": "key_jB7Biq6VXkaB7SQ98YPhkMS13e9b13yU",
             "schema": {
+              "type": "string",
               "deprecated": false
             }
           }
