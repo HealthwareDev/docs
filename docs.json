@@ -28,6 +28,12 @@
             ]
           },
           {
+            "group": "Rules",
+            "pages": [
+              "natural-query-language/intro"
+            ]
+          },
+          {
             "group": "Biomarkers",
             "pages": [
               "biomarkers/sleep",
