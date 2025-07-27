@@ -28,7 +28,7 @@
             ]
           },
           {
-            "group": "Rules",
+            "group": "Natural Query Langauge (NQL)",
             "pages": [
               "natural-query-language/intro"
             ]
