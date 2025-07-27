@@ -23,7 +23,9 @@
           },
           {
             "group": "Rules",
-            "pages": []
+            "pages": [
+              "rules/intro",
+            ]
           },
           {
             "group": "Biomarkers",
