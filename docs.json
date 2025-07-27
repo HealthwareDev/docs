@@ -22,6 +22,10 @@
             ]
           },
           {
+            "group": "Rules",
+            "pages": []
+          },
+          {
             "group": "Biomarkers",
             "pages": [
               "biomarkers/sleep",
