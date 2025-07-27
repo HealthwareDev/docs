@@ -80,14 +80,9 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Build with us",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Learn from us",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Website",
+          "href": "https://healthware.dev",
+          "icon": "website"
         }
       ]
     }
@@ -102,12 +97,7 @@
         "label": "Support",
         "href": "mailto:build@healthware.dev"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "footer": {
     "socials": {
